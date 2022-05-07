@@ -9,8 +9,8 @@ public class Solution {
 
 	public static boolean canWin(int leap, int[] game) {
 		if(leap==0) {
-			for (int i = 0; i < game.length; i++) {
-				if (game[i]==1) return false;
+			for (int element : game) {
+				if (element==1) return false;
 			}
 			return true;
 		}
@@ -50,54 +50,6 @@ public class Solution {
 		return false;
 	}
 
-// else if (game[i + 1] == 0) {
-//		if (canWin(leap, game, i + 1))
-//			return true;
-//		else {
-//			game[i] = -1;
-//		}
-//
-//		game[i] = -1;
-//	} else if (game[i - 1] == 0) {
-//		if (canWin(leap, game, i + 1))
-//			return true;
-//		else
-//			game[i] = -1;
-//	}
-
-//		} else {return false;}
-//			
-//			if (game[i-1]==-1) {
-//			int j = 0;
-//			while(game[--i]==-1 & j++ < leap ) j++;
-//			
-//		} else if (game[i - 1] == 0) {
-//			if (canWin(leap, game, i - 1)) return true; else {
-//				
-//			}
-//		} else return false;
-
-//			
-//			int j = 0;
-//			while (i-1>0 && (game[i - 1] == 0 & (leap - j++) >= 0)) {
-//				if (canWin(leap, game, i))
-//					return true;
-//				else
-//					i--;
-////					game[i] = -1;
-//
-//			}
-//			i = i + j;
-//			j = 0;
-//			while (game[i] == 0 && (leap - j++) >= 0) {
-//				if (canWin(leap, game, i))
-//					return true;
-//				else
-//					i++;
-//			}
-//		}
-//		return false;
-
 	public static void main(String[] args) throws IOException {
 		Scanner scan = new Scanner(new FileInputStream(new File("testdata/hack_arraygame/input01.txt")));
 		int q = scan.nextInt();
@@ -108,14 +60,9 @@ public class Solution {
 			int[] game = new int[n];
 			for (int i = 0; i < n; i++) {
 				game[i] = scan.nextInt();
-//				System.out.print(i + " ");
+
 			}
-//			System.out.println();
-//			String line = canWin(leap, game) ? "YES\n" : "NO\n";
-//
-//			Files.write(Path.of("testdata/hack_arraygame/out.txt"),
-//					line.getBytes(), StandardOpenOption.CREATE, StandardOpenOption.APPEND);
-//			System.out.println(canWin(leap, game) ? ((5000 - q) + " YES") : ((5000 - q) + " NO"));
+
 			System.out.println(canWin(leap, game) ? "YES" : "NO");
 		}
 		scan.close();
