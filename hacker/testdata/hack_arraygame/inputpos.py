@@ -1,5 +1,5 @@
 from ntpath import split
-f = open("input01.txt","r")
+f = open("input02.txt","r")
 f.readline()
 n = int(f.readline().split()[0])
 print("n="+str(n))
