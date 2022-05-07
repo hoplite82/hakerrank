@@ -1,9 +1,8 @@
-package hack.array_recursion;
+package hack.array_recursion.test;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
-import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
@@ -15,7 +14,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
@@ -27,22 +25,16 @@ import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameter;
 import org.junit.runners.Parameterized.Parameters;
 
-class Input {
-	int[] game;
-	int leap;
+import hack.array_recursion.Solution;
 
-	public Input(int[] game, int leap) {
-		this.game = game;
-		this.leap = leap;
-	}
-}
+
 
 @RunWith(Parameterized.class)
-public class SolutionTest {
+public class SolutionTest01 {
 	private final InputStream systemIn = System.in;
 	private final PrintStream systemOut = System.out;
 
-	private ByteArrayInputStream testIn;
+	
 	private ByteArrayOutputStream testOut;
 
 	@Parameter(0)
@@ -56,16 +48,16 @@ public class SolutionTest {
 
 	@Parameters(name = "index: {index}: leap: {1} expected; {2} ")
 	public static Object[][] data() throws IOException {
-		List<Input> inputs = getInputs();
+		List<TestInput> inputs = getInputs();
 		List<String> expected = getExpected();
 		int numberofcasesin = inputs.size();
-		int numberofcasesex = expected.size();
+	
 
 		// System.out.println("casesin:" + numberofcasesin + " casesout" +
 		// numberofcasesex);
 		Object[][] testcasedata = new Object[numberofcasesin][3];
 		for (int i = 0; i < testcasedata.length; i++) {
-			Input in = inputs.get(i);
+			TestInput in = inputs.get(i);
 			testcasedata[i][0] = in.game;
 			testcasedata[i][1] = in.leap;
 			testcasedata[i][2] = expected.get(i);
@@ -75,9 +67,9 @@ public class SolutionTest {
 		return testcasedata;
 	}
 
-	public static List<Input> getInputs() throws FileNotFoundException {
-		List<Input> inputs = new ArrayList<>();
-		Scanner scan = new Scanner(new FileInputStream(new File("testdata/hack_arraygame/input03.txt")));
+	public static List<TestInput> getInputs() throws FileNotFoundException {
+		List<TestInput> inputs = new ArrayList<>();
+		Scanner scan = new Scanner(new FileInputStream(new File("testdata/hack_arraygame/input01.txt")));
 		int q = scan.nextInt();
 		while (q-- > 0) {
 			int n = scan.nextInt();
@@ -87,7 +79,7 @@ public class SolutionTest {
 			for (int i = 0; i < n; i++) {
 				game[i] = scan.nextInt();
 			}
-			Input casein = new Input(game, leap);
+			TestInput casein = new TestInput(game, leap);
 			inputs.add(casein);
 
 		}
@@ -97,7 +89,7 @@ public class SolutionTest {
 
 	private static List<String> getExpected() throws FileNotFoundException {
 		List<String> expected = new ArrayList<>();
-		Scanner scan2 = new Scanner(new FileInputStream(new File("testdata/hack_arraygame/output03.txt")));
+		Scanner scan2 = new Scanner(new FileInputStream(new File("testdata/hack_arraygame/output01.txt")));
 		expected = new ArrayList<String>();
 		while (scan2.hasNextLine()) {
 			expected.add(scan2.nextLine());
@@ -112,14 +104,7 @@ public class SolutionTest {
 
 	}
 
-	private void provideInput(String data) {
-		testIn = new ByteArrayInputStream(data.getBytes());
-		System.setIn(testIn);
-	}
-
-	private String getOutput() {
-		return testOut.toString().trim();
-	}
+	
 
 	@After
 	public void restoreSystemInputOutput() {
@@ -136,6 +121,7 @@ public class SolutionTest {
 		try {
 
 			assertEquals(expected, actual);
+			
 		} catch (AssertionError e) {
 			StringBuilder game_string = new StringBuilder(
 					expected + "--" + actual + "\n" + game_array.length + " " + leap + "\n");
