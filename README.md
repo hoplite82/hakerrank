@@ -1,1 +1,4 @@
-# hakerrank
+# Own Codeskilltraining
+- hackerrank excercises 
+
+ 
