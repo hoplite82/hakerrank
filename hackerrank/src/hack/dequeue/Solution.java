@@ -1,4 +1,4 @@
-package hack_dequeue;
+package hack.dequeue;
 
 import java.io.File;
 import java.io.FileInputStream;
