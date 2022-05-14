@@ -18,7 +18,7 @@ import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameter;
 import org.junit.runners.Parameterized.Parameters;
 
-import hack.dequeue.Solution2;
+import hack.dequeue.Solution;
 
 @RunWith(Parameterized.class)
 public class SolutionTest2 {
@@ -76,7 +76,7 @@ public class SolutionTest2 {
 		final String input = Files.readString(path_to_input);
 		provideInput(input);
 
-		Solution2.main(new String[0]);
+		Solution.main(new String[0]);
 		
 		assertEquals(expected.trim(), getOutput());
 	}
